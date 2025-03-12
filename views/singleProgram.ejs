@@ -1,0 +1,36 @@
+<%- include('components/head') %> 
+<%- include('components/navbar') %>
+
+<section class="mainFont single-workout">
+  <h1><%= program.title %></h1>
+  <h2><%= program.description %></h2>
+  
+  <div class="program-schedule">
+    <% program.schedule.forEach(day => { %>
+      <div class="schedule-day">
+        <h3>Day <%= day.day %></h3>
+        <% day.workouts.forEach(entry => { %>
+          <p><strong>Workout:</strong> 
+            <a href="/workouts/<%= entry.workout._id %>"><%= entry.workout.title %></a> 
+          </p>
+          <p><strong>Notes:</strong> <%= entry.notes %></p>
+        <% }) %>
+      </div>
+    <% }) %>
+  </div>
+  <div class="single-workout-footer">
+    <h4>Duration: <%= program.duration %> days</h4>
+    <h4>Difficulty: <%= program.difficulty %></h4>
+    <h4>Equipment needed: <%= program.equipment.join(', ') %></h4>
+    <h3>Category: <%= program.category.join(', ') %></h3>
+    <% if (user) { %>
+      <form action="/programs/<%= program._id %>/toggle-save" method="POST">
+        <button type="submit" class="save-button <%= user.savedPrograms && user.savedPrograms.includes(program._id) ? 'saved' : '' %>">
+          <%= user.savedPrograms && user.savedPrograms.includes(program._id) ? 'Unsave' : 'Save' %>
+        </button>
+      </form>
+    <% } %>
+  </div>
+</section>
+
+<%- include('components/foot') %>

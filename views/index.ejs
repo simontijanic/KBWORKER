@@ -1,0 +1,33 @@
+<%- include('components/head') %> <%- include('components/navbar') %>
+
+<section class="grid-container index-container mainFont">
+  <div class="index-grid">
+    <div class="grid-top">
+        <a class="grid-item-long" href="/guides/<%= guide._id %>">
+            <h1><%= guide.title %></h1>
+            <h3><%= guide.category %></h3>
+            <h5><%= guide.tags %></h5>
+        </a>
+          <a class="grid-item-short" href="/programs/<%= program._id %>">
+            <h1><%= program.title %></h1>
+            <h3><%= program.description %></h3>
+          </a>      
+    </div>
+    <div class="grid-bottom">
+        <a class="grid-item-short" href="/workouts/<%= workout1._id %>">
+            <h1><%= workout1.title %></h1>
+            <h3><%= workout1.description %></h3>
+        </a>
+        <a class="grid-item-short" href="/workouts/<%= workout2._id %>">
+            <h1><%= workout2.title %></h1>
+            <h3><%= workout2.description %></h3>
+        </a>
+        <a class="grid-item-short" href="/collections/<%= collection._id %>">
+            <h1>COLLECTION <%= collection.name %></h1>
+            <h3><%= collection.description %></h3>
+        </a>    
+    </div>
+  </div>
+</section>
+
+<%- include('components/foot') %>

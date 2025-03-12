@@ -1,0 +1,15 @@
+<%- include('components/head') %> <%- include('components/navbar') %>
+<section class="grid-container guides-container mainFont">
+  <h1>150+ guides in the database</h1>
+  <div class="grid-three-row">
+    <% if (guides.length > 0) { %> <% guides.forEach(guide => { %>
+    <a class="grid-item" href="/guides/<%= guide._id %>">
+      <h3><%= guide.title %></h3>
+      <p><strong>Categories:</strong> <%= guide.category.join(', ') %></p>
+    </a>
+    <% }) %> <% } else { %>
+    <p>No guides found.</p>
+    <% } %>
+  </div>
+</section>
+<%- include('components/foot') %>

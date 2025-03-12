@@ -1,0 +1,17 @@
+<%- include('components/head') %> <%- include('components/navbar') %>
+<section class="grid-container workouts-container mainFont">
+  <h1>2400+ workouts in the database</h1>
+  <div class="grid-four-row">
+    <% if (workouts.length > 0) { %> <% workouts.forEach(workout => { %>
+      <a class="grid-item" href="/workouts/<%= workout._id %>">
+        <h3><%= workout.title %></h3>
+        <p><strong>Difficulty:</strong> <%= workout.difficulty %></p>
+        <p><strong>Duration:</strong> <%= workout.duration %> minutes</p>
+        <p><strong>Categories:</strong> <%= workout.category.join(', ') %></p>
+      </a>
+    <% }) %> <% } else { %>
+    <p>No workouts found.</p>
+    <% } %>
+  </div>
+</section>
+<%- include('components/foot') %>

@@ -1,0 +1,27 @@
+<%- include('components/head') %> 
+<%- include('components/navbar') %>
+
+<section class="mainFont single-workout">
+  <h1><%= workout.title %></h1>
+  <h2><%= workout.description %></h2>
+  <div class="single-workout-content">
+    <p><%- workout.content %></p>
+  </div>
+
+  <div class="single-workout-footer">
+    <h3><%= workout.difficulty %></h3>
+    <h3><%= workout.duration %> minutes</h3>
+    <h3>Equipment needed: <%= workout.equipment %></h3>
+    <h4><%= workout.category %></h4>
+    <% if (user && user.savedWorkouts) { %>
+      <form action="/workouts/<%= workout._id %>/toggle-save" method="POST">
+        <button type="submit" class="save-button <%= user.savedWorkouts.includes(workout._id) ? 'saved' : '' %>">
+          <%= user.savedWorkouts.includes(workout._id) ? 'Unsave' : 'Save' %>
+        </button>
+      </form>
+    <% } %>  
+  </div>
+
+</section>
+
+<%- include('components/foot') %>

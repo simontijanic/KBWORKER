@@ -1,0 +1,32 @@
+<header class="header mainFont">
+  <div class="logo"><a class="textColorWhite" href="/">KBWorker</a></div>
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+  <div class="nav-links">
+    <div class="link">
+      <a class="textColorBlack" href="/workouts">WORKOUTS</a>
+    </div>
+    <div class="link">
+      <a class="textColorBlack" href="/programs">PROGRAMS</a>
+    </div>
+    <div class="link">
+      <a class="textColorBlack" href="/guides">GUIDES</a>
+    </div>
+    <div class="link">
+      <a class="textColorBlack" href="/collections">COLLECTIONS</a>
+    </div>
+    <div class="userProfile">
+      <% if (user) { %>
+          <a class="textColorBlack" href="/profile">MY BOOKMARKS</a>
+      <% } else { %>
+          <a class="textColorBlack" href="/login">LOGIN</a>
+      <% } %>
+    </div>
+  </div>
+</header>
+
+<script>
+function toggleMobileMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  navLinks.classList.toggle('active');
+}
+</script>

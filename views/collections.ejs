@@ -1,0 +1,16 @@
+<%- include('components/head') %>
+    <%- include('components/navbar') %>
+    <section class="grid-container collections-container mainFont">
+        <h1>80+ collections in the database</h1>
+        <div class="grid-three-row">
+            <% if (collections.length > 0) { %> <% collections.forEach(collection => { %>
+                <a class="grid-item" href="/collections/<%= collection._id %>">
+                  <h3><%= collection.name %></h3>
+                  <p><%= collection.description %></p>
+                </a>
+                <% }) %> <% } else { %>
+                <p>No collections found.</p>
+            <% } %>
+        </div>
+    </section>
+<%- include('components/foot') %>

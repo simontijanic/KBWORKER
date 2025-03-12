@@ -1,0 +1,71 @@
+<%- include('components/head') %>
+<%- include('components/navbar') %>
+<section class="profile-container mainFont">
+    <div class="profile-header">
+        <h1>Welcome, <%= user.username %>!</h1>
+        <form action="/logout" method="POST" class="logout-form">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
+    
+    <div class="profile-sections">
+        <!-- Saved Workouts -->
+        <div class="profile-section">
+            <h2>Saved Workouts</h2>
+            <% if (user.savedWorkouts.length > 0) { %>
+                <ul class="saved-items-list">
+                    <% user.savedWorkouts.forEach(workout => { %>
+                        <li class="saved-item">
+                            <a href="/workouts/<%= workout._id %>">
+                                <h3><%= workout.title %></h3>
+                                <p><%= workout.description %></p>
+                            </a>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>No saved workouts yet.</p>
+            <% } %>
+        </div>
+        
+        <!-- Saved Programs -->
+        <div class="profile-section">
+            <h2>Saved Programs</h2>
+            <% if (user.savedPrograms.length > 0) { %>
+                <ul class="saved-items-list">
+                    <% user.savedPrograms.forEach(program => { %>
+                        <li class="saved-item">
+                            <a href="/programs/<%= program._id %>">
+                                <h3><%= program.title %></h3>
+                                <p><%= program.description %></p>
+                            </a>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>No saved programs yet.</p>
+            <% } %>
+        </div>
+        
+        <!-- Saved Collections -->
+        <div class="profile-section">
+            <h2>Saved Collections</h2>
+            <% if (user.savedCollections.length > 0) { %>
+                <ul class="saved-items-list">
+                    <% user.savedCollections.forEach(collection => { %>
+                        <li class="saved-item">
+                            <a href="/collections/<%= collection._id %>">
+                                <h3><%= collection.name %></h3>
+                                <p><%= collection.description %></p>
+                            </a>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>No saved collections yet.</p>
+            <% } %>
+        </div>    
+    </div>
+</section>
+
+<%- include('components/foot') %>

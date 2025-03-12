@@ -1,0 +1,29 @@
+<%- include('components/head') %> <%- include('components/navbar') %>
+
+<section class="mainFont single-workout">
+  <h1><%= collection.name %></h1>
+  <h4><%= collection.description %></h4>
+  <% if (user) { %>
+    <form action="/collections/<%= collection._id %>/toggle-save" method="POST">
+      <button type="submit" class="save-button <%= user.savedCollections && user.savedCollections.includes(collection._id) ? 'saved' : '' %>">
+        <%= user.savedCollections && user.savedCollections.includes(collection._id) ? 'Unsave' : 'Save' %>
+      </button>
+    </form>
+  <% } %>
+  <div class="single-collection-content">
+    <h3>Workouts</h3>
+    <% collection.workouts.forEach(workout => { %>
+    <a href="/workouts/<%= workout._id %>"><%= workout.title %></a>
+    <% }) %>
+    
+  </div>
+
+  <div class="single-collection-content">
+    <h3>Programs</h3>
+    <% collection.programs.forEach(program => { %>
+    <a href="/programs/<%= program._id %>"><%= program.title %></a>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('components/foot') %>

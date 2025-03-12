@@ -1,0 +1,26 @@
+<%- include('components/head') %> <%- include('components/navbar') %>
+
+<section class="mainFont single-workout">
+  <h1><%= guide.title %></h1>
+  <div class="single-workout-content">
+    <% guide.sections.forEach(section => { %>
+    <h2><%= section.sectionTitle %></h2>
+    <p><%= section.content %></p>
+    <% }) %>
+  </div>
+
+  <div class="single-workout-footer">
+    <h3><%= guide.sources %></h3>
+    <h4><%= guide.tags %></h4>
+    <h4><%= guide.category %></h4>
+    <% if (user) { %>
+      <form action="/guides/<%= guide._id %>/toggle-save" method="POST">
+        <button type="submit" class="save-button <%= user.savedGuides && user.savedGuides.includes(guide._id) ? 'saved' : '' %>">
+          <%= user.savedGuides && user.savedGuides.includes(guide._id) ? 'Unsave' : 'Save' %>
+        </button>
+      </form>
+    <% } %>
+  </div>
+</section>
+
+<%- include('components/foot') %>

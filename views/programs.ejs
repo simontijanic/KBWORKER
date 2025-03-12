@@ -1,0 +1,21 @@
+<%- include('components/head') %>
+    <%- include('components/navbar') %>
+    <section class="grid-container programs-container mainFont">
+        <h1>80+ programs in the database</h1>
+        <div class="grid-four-row">
+            <% if (programs.length > 0) { %>
+                <% programs.forEach(program => { %>
+                    <a class="grid-item" href="/programs/<%= program._id %>">
+                        <h3><%= program.title %></h3>
+                        <p><strong>Duration:</strong> <%= program.duration %> minutes</p>
+                        <p><strong>Categories:</strong> <%= program.category.join(', ') %></p>                  
+                    </a>
+                <% }) %>
+            <% } else { %>
+                <p>No workouts found.</p>
+            <% } %>
+        </div>
+
+    </section>
+
+<%- include('components/foot') %>
