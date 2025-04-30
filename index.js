@@ -7,6 +7,8 @@ const flash = require('express-flash');
 const app = express();
 
 const userRoute = require("./routes/userRoute");
+const contentRoute = require("./routes/contentRoute");
+const authRoute = require("./routes/authRoute");
 
 const databaseController = require("./controllers/databaseController");
 const authMiddleware = require("./middleware/auth");
@@ -35,6 +37,8 @@ app.use((req, res, next) => {
 
 app.use(authMiddleware.setUserAuth)
 app.use(userRoute);
+app.use(contentRoute);
+app.use(authRoute);
 
 app.listen(3000, () => {
   databaseController();
